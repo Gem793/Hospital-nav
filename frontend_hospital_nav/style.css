@@ -1,0 +1,138 @@
+/* General body background */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('hospital_bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  background: #003366;
+  color: #fff;
+  padding: 12px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+.nav-logo {
+  width: 80px;
+  height: auto;
+  margin-right: 12px;
+}
+.nav-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.navbar-right a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.navbar-right a:hover { color: #ffcc00; }
+.emergency-btn {
+  background: #e60000;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.emergency-btn:hover { background: #cc0000; }
+
+/* Page Layout */
+.page-container {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 70px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+.sidebar h4 { margin-bottom: 15px; font-weight: bold; color: #003366; }
+.sidebar ul { list-style: none; padding: 0; }
+.sidebar li { margin-bottom: 10px; }
+.floor-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #f0f8ff;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+.floor-btn:hover { background: #cce6ff; }
+.floor-btn.active { background: #0073e6; color: #fff; }
+
+/* Overlay & Card */
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.main-card {
+  max-width: 900px;
+  width: 90%;
+  background: linear-gradient(to bottom, #f2f8ff, #ffffff);
+  border-left: 8px solid #0073e6;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.main-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+}
+
+/* Card Header */
+.card-header { display: flex; align-items: center; margin-bottom: 30px; flex-wrap: wrap; }
+.logo { width: 140px; margin-right: 20px; border-radius: 5px; transition: transform 0.3s ease; }
+.logo:hover { transform: scale(1.05); }
+.title { font-size: 1.8rem; font-weight: 700; color: #003366; margin: 0; }
+
+/* Inputs */
+.input-field { border-radius: 10px; border: 1px solid #b0c4de; padding: 12px; background-color: #f0f8ff; transition: all 0.3s ease; }
+.input-field:focus { border-color: #0073e6; box-shadow: 0 0 8px rgba(0,115,230,0.4); background-color: #e6f0ff; }
+
+/* Button */
+.btn-go { width: 100%; background-color: #0073e6; border: none; font-weight: bold; transition: all 0.3s ease; color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+.btn-go:hover { background-color: #005bb5; transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.btn-go:active { transform: translateY(0) scale(0.98); }
+
+/* Map */
+.map-container { margin-top: 30px; border: 2px solid #b0c4de; border-radius: 12px; padding: 25px; min-height: 350px; display: flex; justify-content: center; align-items: center; background: linear-gradient(to bottom, #eaf4ff, #ffffff); transition: all 0.4s ease; }
+.map-container.active { background: linear-gradient(to bottom, #d0f0fd, #e0f7ff); border-color: #0073e6; box-shadow: 0 0 20px rgba(0,115,230,0.3); transform: scale(1.02); }
+.placeholder-text { color: #666; font-style: italic; font-size: 1rem; text-align: center; }
+
+/* Footer */
+.site-footer { background: #003366; color: #fff; padding: 15px 25px; text-align: center; font-size: 0.9rem; }
+.site-footer a { color: #ffcc00; margin: 0 10px; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* Chatbot */
+#chatbot { position: fixed; bottom: 20px; right: 20px; width: 280px; max-width: 90%; background: #fff; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: flex; flex-direction: column; z-index: 1000; font-family: 'Segoe UI', sans-serif; }
+#chat-header { background-color: #0073e6; color: white; padding: 10px 15px; border-radius: 15px 15px 0 0; font-weight: bold; cursor: pointer; }
+#chat-body { padding: 10px; height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.chat-message { padding: 8px 12px; border-radius: 12px; max-width: 80%; word-wrap: break-word; }
+.chat-message.bot { background: #f0f8ff; align-self: flex-start; }
+.chat-message.user { background: #0073e6; color: #fff; align-self: flex-end; }
+#chat-input { border: none; border-top: 1px solid #ddd; padding: 10px; border-radius: 0 0 15px 15px; outline: none; }
+
+/* Responsive */
+@media (max-width: 992px) { .page-container { flex-direction: column; } .sidebar { width: 100%; display: flex; overflow-x: auto; } .sidebar ul { display: flex; gap: 10px; } .sidebar li { margin-bottom: 0; } }
+@media (max-width: 576px) { .main-card { padding: 20px; } .title { font-size: 1.5rem; } .nav-title { font-size: 1.2rem; } }
