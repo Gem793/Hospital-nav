@@ -1,0 +1,10 @@
+Flask==3.0.0
+flask-cors==4.0.0
+openai-whisper==20250625
+matplotlib==3.10.6
+geopandas==0.14.3
+networkx==3.2.1
+shapely==2.0.3
+requests==2.31.0
+pillow==10.2.0
+gunicorn==21.2.0
