@@ -9,12 +9,13 @@ import networkx as nx
 from shapely.geometry import Point, LineString
 import matplotlib.pyplot as plt
 import io
-import openai
+import OpenAI
 import tempfile
 import re
 
 # Set OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
 app = Flask(__name__)
 CORS(app)
