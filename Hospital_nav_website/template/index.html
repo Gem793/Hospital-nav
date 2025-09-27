@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Navigator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .navigator-container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #357ABD;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+        #result {
+            margin-top: 25px;
+        }
+
+        #pathImg {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 500px) {
+            .navigator-container {
+                padding: 20px;
+            }
+
+            input[type="text"], button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigator-container">
+        <h2>Hospital Navigation</h2>
+        <label>Start Room: <input type="text" id="start" placeholder="Enter start room"></label>
+        <label>End Room: <input type="text" id="end" placeholder="Enter end room"></label>
+        <button onclick="getPath()">Find Path</button>
+
+        <div id="result">
+            <img id="pathImg" src="" alt="Path will appear here">
+        </div>
+    </div>
+
+    <script>
+        async function getPath() {
+            const start = document.getElementById("start").value.trim();
+            const end = document.getElementById("end").value.trim();
+
+            if (!start || !end) {
+                alert("Please enter both start and end room names.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://127.0.0.1:5000/get_path", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ start, end })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    alert("Error: " + err.error);
+                    return;
+                }
+
+                const blob = await response.blob();
+                const imgUrl = URL.createObjectURL(blob);
+                document.getElementById("pathImg").src = imgUrl;
+
+            } catch (error) {
+                console.error(error);
+                alert("Failed to fetch path. Make sure the Flask server is running.");
+            }
+        }
+    </script>
+</body>
+</html>
+
